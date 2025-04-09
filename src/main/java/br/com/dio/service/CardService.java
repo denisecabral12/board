@@ -8,20 +8,24 @@ import br.com.dio.persistence.dao.BlockDAO;
 import br.com.dio.persistence.dao.CardDAO;
 import br.com.dio.persistence.entity.CardEntity;
 import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static br.com.dio.persistence.entity.BoardColumnKindEnum.CANCEL;
 import static br.com.dio.persistence.entity.BoardColumnKindEnum.FINAL;
 
-
+@Service
 @AllArgsConstructor
 public class CardService {
 
     private final Connection connection;
 
+    @Transactional
     public CardEntity create(final CardEntity entity) throws SQLException {
         try {
             var dao = new CardDAO(connection);
@@ -34,6 +38,7 @@ public class CardService {
         }
     }
 
+    @Transactional
     public void moveToNextColumn(final Long cardId, final List<BoardColumnInfoDTO> boardColumnsInfo) throws SQLException{
         try{
             var dao = new CardDAO(connection);
@@ -63,6 +68,7 @@ public class CardService {
         }
     }
 
+    @Transactional
     public void cancel(final Long cardId, final Long cancelColumnId ,
                        final List<BoardColumnInfoDTO> boardColumnsInfo) throws SQLException{
         try{
@@ -93,6 +99,7 @@ public class CardService {
         }
     }
 
+    @Transactional
     public void block(final Long id, final String reason, final List<BoardColumnInfoDTO> boardColumnsInfo) throws SQLException {
         try{
             var dao = new CardDAO(connection);
@@ -122,6 +129,7 @@ public class CardService {
         }
     }
 
+    @Transactional
     public void unblock(final Long id, final String reason) throws SQLException {
         try{
             var dao = new CardDAO(connection);

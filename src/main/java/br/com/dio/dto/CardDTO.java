@@ -3,17 +3,18 @@ package br.com.dio.dto;
 import lombok.Data;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
 @Data
-public class BoardColumnDTO {
+public class CardDTO {
     private Long id;
     private String title;
+    private String description;
     private Integer position;
-    private Long boardId;
-    private List<CardDTO> cards = new ArrayList<>();
+    private Long columnId;
+    private LocalDateTime dueDate;
+    private String assignee;
+    private String labels;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
     private boolean archived;
-}
+} 

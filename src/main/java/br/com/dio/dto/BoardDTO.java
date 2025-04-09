@@ -7,13 +7,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Data
-public class BoardColumnDTO {
+public class BoardDTO {
     private Long id;
     private String title;
-    private Integer position;
-    private Long boardId;
-    private List<CardDTO> cards = new ArrayList<>();
+    private String description;
+    private List<BoardColumnDTO> columns = new ArrayList<>();
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
     private boolean archived;
-}
+} 

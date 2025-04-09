@@ -1,20 +1,12 @@
 package br.com.dio;
 
-import br.com.dio.persistence.migration.MigrationStrategy;
-import br.com.dio.ui.MainMenu;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
 
-import java.sql.SQLException;
-
-import static br.com.dio.persistence.config.ConnectionConfig.getConnection;
-
-
+@SpringBootApplication(exclude = {SecurityAutoConfiguration.class})
 public class Main {
-
-    public static void main(String[] args) throws SQLException {
-        try(var connection = getConnection()){
-            new MigrationStrategy(connection).executeMigration();
-        }
-        new MainMenu().execute();
+    public static void main(String[] args) {
+        SpringApplication.run(Main.class, args);
     }
-
 }
